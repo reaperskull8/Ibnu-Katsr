@@ -1,34 +1,21 @@
-// Tunggu hingga DOM siap
-document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menu-toggle');
-  const navbar = document.getElementById('navbar');
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
+// script.js
+const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.getElementById('navbar');
+const scrollBtn = document.getElementById('scrollTopBtn');
 
-  // Toggle menu responsif
-  if (menuToggle && navbar) {
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      navbar.classList.toggle('active'); // Menggunakan class 'active'
-    });
+menuToggle.addEventListener('click', () => {
+  navbar.classList.toggle('show');
+});
+
+// Tombol scroll to top
+window.onscroll = function () {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
   }
+};
 
-  // Tombol kembali ke atas
-  if (scrollTopBtn) {
-    window.addEventListener('scroll', () => {
-      // Tampilkan/sembunyikan tombol berdasarkan posisi scroll
-      if (window.scrollY > 300) {
-        scrollTopBtn.style.display = 'block';
-      } else {
-        scrollTopBtn.style.display = 'none';
-      }
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // Gulir dengan animasi halus
-      });
-    });
-  }
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
