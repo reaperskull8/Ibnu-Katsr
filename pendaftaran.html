@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pendaftaran - Sekolah Quran Ibnu Katsir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Sekolah Quran Ibnu Katsir</h1>
+    </div>
+    <nav id="navbar">
+      <a href="index.html" class="nav-link">Beranda</a>
+      <a href="layanan.html" class="nav-link">Layanan</a>
+      <a href="tk-paud.html" class="nav-link">TK/PAUD</a>
+      <a href="sd.html" class="nav-link">SD</a>
+      <a href="smp.html" class="nav-link">SMP</a>
+      <a href="lowongan.html" class="nav-link">Lowongan</a>
+      <a href="pendaftaran.html" class="nav-link active">Pendaftaran</a>
+    </nav>
+    <button id="menu-toggle" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <h2>Formulir Pendaftaran Online</h2>
+      <div class="card">
+        <form id="daftarForm">
+          <label>Nama Lengkap Anak:</label>
+          <input type="text" id="namaAnak" required />
+
+          <label>Jenis Kelamin:</label>
+          <select id="jk" required>
+            <option value="">-- Pilih --</option>
+            <option>Laki-laki</option>
+            <option>Perempuan</option>
+          </select>
+
+          <label>Usia Anak:</label>
+          <input type="number" id="usia" min="1" required />
+
+          <label>Unit Pendidikan yang Dituju:</label>
+          <select id="unit" required>
+            <option value="">-- Pilih Unit --</option>
+            <option>TK/PAUD</option>
+            <option>SD</option>
+            <option>SMP</option>
+          </select>
+
+          <label>Nama Orang Tua/Wali:</label>
+          <input type="text" id="namaOrtu" required />
+
+          <label>No. WhatsApp Aktif:</label>
+          <input type="tel" id="wa" required />
+
+          <label>Alamat Tempat Tinggal:</label>
+          <textarea id="alamat" rows="3" required></textarea>
+
+          <button type="submit" class="cta-btn">Kirim via WhatsApp</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sekolah Quran Ibnu Katsir | Jl. Contoh No. 123, Kota Santri</p>
+  </footer>
+  <script src="js/script.js"></script>
+  <script>
+    document.getElementById("daftarForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const namaAnak = document.getElementById("namaAnak").value;
+      const jk = document.getElementById("jk").value;
+      const usia = document.getElementById("usia").value;
+      const unit = document.getElementById("unit").value;
+      const namaOrtu = document.getElementById("namaOrtu").value;
+      const wa = document.getElementById("wa").value;
+      const alamat = document.getElementById("alamat").value;
+
+      const pesan = `Assalamu'alaikum, saya ingin mendaftarkan anak saya:\n\n` +
+        `Nama Anak: ${namaAnak}\n` +
+        `Jenis Kelamin: ${jk}\n` +
+        `Usia: ${usia} tahun\n` +
+        `Unit Tujuan: ${unit}\n` +
+        `Nama Orang Tua: ${namaOrtu}\n` +
+        `No. WA: ${wa}\n` +
+        `Alamat: ${alamat}`;
+
+      const nomorAdmin = "6281234567890"; // ← Ganti dengan nomor admin sekolah
+      const urlWa = `https://wa.me/${nomorAdmin}?text=${encodeURIComponent(pesan)}`;
+      window.open(urlWa, "_blank");
+    });
+  </script>
+</body>
+</html>
